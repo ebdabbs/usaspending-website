@@ -9,6 +9,7 @@ import * as MetaTagHelper from 'helpers/metaTagHelper';
 import Footer from 'containers/Footer';
 
 import CovidHighlights from 'containers/homepage/CovidHighlights';
+import HeroPoc from 'containers/homepage/HeroPoc';
 import Header from 'containers/shared/HeaderContainer';
 import GlobalModalContainer from 'containers/globalModal/GlobalModalContainer';
 import MetaTags from '../sharedComponents/metaTags/MetaTags';
@@ -24,7 +25,8 @@ const Homepage = () => (
         <MetaTags {...MetaTagHelper.homePageMetaTags} />
         <Header />
         <main id="main-content" className="homepage-content">
-            <CovidHighlights />
+            {/* <CovidHighlights /> */}
+            <HeroPoc />
             <Features />
             <Download />
             <Community />
