@@ -1,7 +1,7 @@
 .sentence{
      color: #222;
      font-size: 30px;
-     text-align: left;
+     text-align: center;
 }
 .wrapper{
     background-color: #f5f5f5;
@@ -22,6 +22,19 @@
 		// opacity: 0;
 		overflow: hidden;
 		// position: absolute;
+	}
+
+	.download {
+		width: 210px;
+	}
+
+	.track {
+		width: 116px;
+	}
+
+	.shrink {
+		width: 0;
+		transition: width 2s;
 	}
 }
 

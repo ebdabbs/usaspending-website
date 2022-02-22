@@ -7,21 +7,23 @@ const HeroPoc = () => {
     // Track government spending <by who gives money>
     // The official source of government spending data.
 
+    const slide = ((e) => e.target.classList.add("shrink"));
+
     return (
         <section className="wrapper">
             <h2 className="sentence">
                 <div className="fromLeft">
-                    <span>Download </span>
-                    <span>Track </span>
+                    <span className="download" onClick={slide}>Download</span>
+                    <span className="track" onClick={slide}>Track</span>
                 </div>
                 government spending by who receives money
-                <div className="slidingVertical">
+                {/* <div className="slidingVertical">
                     <span>Amazing.</span>
                     <span>Beautiful.</span>
                     <span>Cute.</span>
                     <span>Delightful.</span>
                     <span>Emotional.</span>
-                </div>
+                </div> */}
             </h2>
 
             {/* <h2 className="sentence">
