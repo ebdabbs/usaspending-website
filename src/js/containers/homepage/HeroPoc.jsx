@@ -7,14 +7,18 @@ const HeroPoc = () => {
     // Track government spending <by who gives money>
     // The official source of government spending data.
 
-    const slide = ((e) => e.target.classList.add("shrink"));
+    const slide = (e) => e.target.classList.add("shrink");
 
     return (
         <section className="wrapper">
             <h2 className="sentence">
                 <div className="fromLeft">
-                    <span className="download" onClick={slide}>Download</span>
-                    <span className="track" onClick={slide}>Track</span>
+                    <span className="download" onClick={slide}>
+                        Download
+                    </span>
+                    <span className="track" onClick={slide}>
+                        Track
+                    </span>
                 </div>
                 government spending by who receives money
                 {/* <div className="slidingVertical">
