@@ -7,7 +7,10 @@ const HeroPoc = () => {
     // Track government spending <by who gives money>
     // The official source of government spending data.
 
-    const shrink = (e) => e.target.classList.add("shrink");
+    const shrink = (e) => {
+        e.target.parentElement.children[0].classList.add("shrink");
+        e.target.parentElement.children[1].classList.add("shrink");
+    };
 
     return (
         <section className="wrapper">
