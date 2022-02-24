@@ -27,26 +27,20 @@
         color: #00abe9;
         overflow: hidden;
         position: absolute;
-
-        // animation: leftToRight 16s linear infinite 0s;
-
-        // &:nth-child(2) {
-        //     animation-delay: 3s;
-        // }
     }
 }
 
-.track {
-    translate: -1000px;
-}
-
-.fadeOut {
+.hero_fadeOut {
     opacity: 0;
     transition: opacity 1s;
 }
 
-.slideRight {
+.hero_show {
     opacity: 1;
+    translate: -1000px;
+}
+
+.hero_slideRight {
     translate: 0;
     transition: translate 2s;
 }

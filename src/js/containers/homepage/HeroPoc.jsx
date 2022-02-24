@@ -10,29 +10,38 @@ const HeroPoc = () => {
     const downloadRef = useRef(null);
     const trackRef = useRef(null);
 
+    const switchLeft = (show, hide) => {
+        hide.classList.add("hero_fadeOut");
+        hide.classList.remove("hero_show");
+        hide.classList.remove("hero_slideRight");
+        show.classList.remove("hero_fadeOut");
+        show.classList.add("hero_show");
+        setTimeout(() => {
+            show.classList.add("hero_slideRight"); // must be slightly after out of view
+        }, 1);
+    };
+
+    // first cycle
+    setTimeout(() => {
+        switchLeft(trackRef.current, downloadRef.current);
+    }, 2000);
+
+    // timed from then on
     setInterval(() => {
         setTimeout(() => {
-            trackRef.current.classList.remove("fadeOut");
-            downloadRef.current.classList.remove("slideRight");
-            downloadRef.current.classList.add("fadeOut");
-            trackRef.current.classList.add("slideRight");
-            setTimeout(() => {
-                downloadRef.current.classList.remove("fadeOut");
-                trackRef.current.classList.remove("slideRight");
-                trackRef.current.classList.add("fadeOut");
-                downloadRef.current.classList.add("slideRight");
-            }, 2000);
+            switchLeft(downloadRef.current, trackRef.current);
         }, 2000);
-    }, 5000);
+        setTimeout(() => {
+            switchLeft(trackRef.current, downloadRef.current);
+        }, 6000);
+    }, 10000);
 
     return (
         <section className="wrapper">
             <h2 className="sentence">
                 <div className="leftWords">
-                    <span ref={downloadRef} className="download">
-                        Download
-                    </span>
-                    <span ref={trackRef} className="track">
+                    <span ref={downloadRef}>Download</span>
+                    <span ref={trackRef} className="hero_fadeOut">
                         Track
                     </span>
                 </div>
