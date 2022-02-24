@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./HeroPoc.scss";
 
 const HeroPoc = () => {
@@ -7,25 +7,42 @@ const HeroPoc = () => {
     // Track government spending <by who gives money>
     // The official source of government spending data.
 
-    const shrink = (e) => {
-        e.target.parentElement.children[0].classList.add("shrink");
-        e.target.parentElement.children[1].classList.add("shrink");
-    };
+    const downloadRef = useRef(null);
+    const trackRef = useRef(null);
+
+    setInterval(() => {
+        setTimeout(() => {
+            trackRef.current.classList.remove("fadeOut");
+            downloadRef.current.classList.remove("slideRight");
+            downloadRef.current.classList.add("fadeOut");
+            trackRef.current.classList.add("slideRight");
+            setTimeout(() => {
+                downloadRef.current.classList.remove("fadeOut");
+                trackRef.current.classList.remove("slideRight");
+                trackRef.current.classList.add("fadeOut");
+                downloadRef.current.classList.add("slideRight");
+            }, 2000);
+        }, 2000);
+    }, 5000);
 
     return (
         <section className="wrapper">
             <h2 className="sentence">
-                <div className="fromLeft">
-                    <span className="download" onClick={shrink}>
+                <div className="leftWords">
+                    <span ref={downloadRef} className="download">
                         Download
                     </span>
-                    <span className="track" onClick={shrink}>
+                    <span ref={trackRef} className="track">
                         Track
                     </span>
                 </div>
-                government spending by who receives money
-            </h2>
+                <span className="staticBlock">government spending</span>
 
+                <div class="slideLeft">
+                    <span>by who receives money</span>
+                    <span>by who gives money</span>
+                </div>
+            </h2>
         </section>
     );
 };
