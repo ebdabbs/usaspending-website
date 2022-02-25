@@ -2,10 +2,7 @@ import React, { useRef } from "react";
 import "./HeroPoc.scss";
 
 const HeroPoc = () => {
-    // <Download> government spending by who receives money
-    // <Track> government spending <by who receives money>
-    // Track government spending <by who gives money>
-    // The official source of government spending data.
+    let pause = false;
 
     const downloadRef = useRef(null);
     const trackRef = useRef(null);
@@ -19,7 +16,7 @@ const HeroPoc = () => {
         show.classList.remove("hero_fadeOut");
         show.classList.add("hero_hideLeft");
         setTimeout(() => {
-            show.classList.add("hero_slide"); // must be slightly after out of view
+            show.classList.add("hero_slide"); // must be after displaying out of view
         }, 1);
     };
 
@@ -30,33 +27,32 @@ const HeroPoc = () => {
         show.classList.remove("hero_fadeOut");
         show.classList.add("hero_hideRight");
         setTimeout(() => {
-            show.classList.add("hero_slide"); // must be slightly after out of view
+            show.classList.add("hero_slide"); // must be after displaying out of view
         }, 1);
     };
 
-    // first cycle
-    setTimeout(() => {
-        switchLeft(trackRef.current, downloadRef.current);
-    }, 2000);
-    setTimeout(() => {
-        switchRight(givesRef.current, receivesRef.current);
-    }, 6000);
+    const cycleSec = 12;
+    function cycleWords() {
 
-    // timed from then on
-    setInterval(() => {
-        setTimeout(() => {
-            switchLeft(downloadRef.current, trackRef.current);
-        }, 2000);
-        setTimeout(() => {
+        console.log(pause);
+
+        if (!pause) {
             switchLeft(trackRef.current, downloadRef.current);
-        }, 6000);
-        setTimeout(() => {
-            switchRight(givesRef.current, receivesRef.current);
-        }, 8000);
-        setTimeout(() => {
-            switchRight(receivesRef.current, givesRef.current);
-        }, 10000);
-    }, 12000);
+        }
+        if (!pause) {
+            setTimeout(switchRight, cycleSec * 300, givesRef.current, receivesRef.current);
+        }
+        if (!pause) {
+            setTimeout(switchRight, cycleSec * 500, receivesRef.current, givesRef.current);
+        }
+        if (!pause) {
+            setTimeout(switchLeft, cycleSec * 700, downloadRef.current, trackRef.current);
+        }
+        setTimeout(cycleWords, cycleSec * 1000); // repeat every cycleSec seconds
+    }
+
+    // initial delay
+    setTimeout(cycleWords, 2000);
 
     return (
         <section className="wrapper">
@@ -76,6 +72,12 @@ const HeroPoc = () => {
                     </span>
                 </div>
             </h2>
+            <button
+                onClick={() => {
+                    pause = !pause;
+                }}>
+                Pause/Resume
+            </button>
         </section>
     );
 };
