@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import "./HeroPoc.scss";
 
+// Stephanie had a clever thought to include the css as code, to dymanically update with positions, sizes, etc
+
 const HeroPoc = () => {
     let pause = false;
 
@@ -20,6 +22,8 @@ const HeroPoc = () => {
         }, 1);
     };
 
+    // these two can be combined in a clever way, I just don't want to confuse the thinking
+
     const switchRight = (show, hide) => {
         hide.classList.add("hero_fadeOut");
         hide.classList.remove("hero_hideRight");
@@ -34,8 +38,9 @@ const HeroPoc = () => {
     const cycleSec = 12;
     function cycleWords() {
 
-        console.log(pause);
+        console.log(pause); // debug: why is this showing more than the page timing? and what changes it back to false?
 
+        // switch start & end of sentence
         if (!pause) {
             switchLeft(trackRef.current, downloadRef.current);
         }
@@ -48,10 +53,15 @@ const HeroPoc = () => {
         if (!pause) {
             setTimeout(switchLeft, cycleSec * 700, downloadRef.current, trackRef.current);
         }
+
+        // scroll in static phrase
+
+        // might need a "reset" function to the initial state?
+
         setTimeout(cycleWords, cycleSec * 1000); // repeat every cycleSec seconds
     }
 
-    // initial delay
+    // initial delay, make sure refs are settled
     setTimeout(cycleWords, 2000);
 
     return (
