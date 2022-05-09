@@ -172,7 +172,10 @@ export class TASCheckboxTree extends React.Component {
 
     onClear = () => {
         if (this.request) this.request.cancel();
-        this.props.showTasTree();
+
+        // clear the searchExpanded array
+        this.props.setExpandedTas([], 'SET_SEARCHED_EXPANDED');
+
         this.setState({
             isSearch: false,
             searchString: '',
@@ -181,6 +184,7 @@ export class TASCheckboxTree extends React.Component {
             errorMessage: '',
             showNoResults: false
         });
+        this.props.showTasTree();
     }
 
     onUncheck = (newChecked, uncheckedNode) => {

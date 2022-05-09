@@ -205,13 +205,16 @@ export class NAICSCheckboxTree extends React.Component {
 
     onClear = () => {
         if (this.request) this.request.cancel();
-        this.props.showNaicsTree();
+
+        // clear the searchExpanded array
+        this.props.setExpandedNaics([], 'SET_SEARCHED_EXPANDED');
+
         this.setState({
             isSearch: false,
             searchString: '',
             isLoading: false,
             requestType: ''
-        });
+        }, this.fetchNAICS);
     }
 
     onCheck = (newChecked) => {
