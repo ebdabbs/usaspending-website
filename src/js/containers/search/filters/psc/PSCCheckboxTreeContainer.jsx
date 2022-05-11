@@ -224,7 +224,6 @@ export class PSCCheckboxTreeContainer extends React.Component {
         // clear the searchExpanded array
         this.props.setExpandedPsc([], 'SET_SEARCHED_EXPANDED');
 
-        // this.props.showPscTree();
         this.setState({
             isSearch: false,
             searchString: '',
