@@ -391,7 +391,7 @@ export const areChildrenPartial = (count, children) => {
     return sumOfAllChildren < count;
 };
 
-export const addChildrenAndPossiblyPlaceholder = (children, parent, hide) => {
+export const addChildrenAndPossiblyPlaceholder = (children, parent, hide = true) => {
     if (!children || !parent) return [];
     const hasGenuineGrandChildren = children.some((node) => doesNodeHaveGenuineChildren(node));
     const hasPlaceholderGrandChildren = children.some((child) => child?.children?.every((gc) => gc.isPlaceHolder));
@@ -429,10 +429,7 @@ export const addChildrenAndPossiblyPlaceholder = (children, parent, hide) => {
                 children: addChildrenAndPossiblyPlaceholder(child.children, child, hide)
             }));
     }
-
-    return hide
-        ? children.map((c) => ({ ...c, className: 'hide' }))
-        : children;
+    return children;
 };
 
 /**
