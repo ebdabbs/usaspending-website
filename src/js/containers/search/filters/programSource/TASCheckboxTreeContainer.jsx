@@ -183,9 +183,8 @@ export class TASCheckboxTree extends React.Component {
             isError: false,
             errorMessage: '',
             showNoResults: false
-        });
-        this.props.showTasTree();
-    }
+        }, this.fetchTas);
+    };
 
     onUncheck = (newChecked, uncheckedNode) => {
         const [newCounts, newUnchecked] = decrementTasCountAndUpdateUnchecked(
