@@ -116,7 +116,7 @@ export class TASCheckboxTree extends React.Component {
                     this.props.setTasCounts(countsFromHash);
                     return getUniqueAncestorPaths(checkedFromHash, uncheckedFromHash)
                         .reduce((prevPromise, param) => prevPromise
-                            // fetch the all the ancestors of the checked nodes
+                        // fetch the all the ancestors of the checked nodes
                             .then(() => this.fetchTas(param, null, false)), Promise.resolve([])
                         )
                         .then(() => {
@@ -204,7 +204,7 @@ export class TASCheckboxTree extends React.Component {
             getTasAncestryPathForChecked(newUnchecked, this.props.nodes),
             newCounts
         );
-    }
+    };
 
     onCheck = (newChecked) => {
         const [newCounts, newUnchecked] = incrementTasCountAndUpdateUnchecked(
@@ -228,7 +228,7 @@ export class TASCheckboxTree extends React.Component {
         if (this.hint) {
             this.hint.showHint();
         }
-    }
+    };
 
     onCollapse = (newExpandedArray) => {
         if (this.state.isSearch) {
@@ -237,7 +237,7 @@ export class TASCheckboxTree extends React.Component {
         else {
             this.props.setExpandedTas(newExpandedArray);
         }
-    }
+    };
 
     setCheckedStateFromUrlHash = (newChecked) => {
         if (this.props.nodes.length > 0) {
@@ -249,13 +249,13 @@ export class TASCheckboxTree extends React.Component {
             this.props.setCheckedTas(realCheckedWithPlaceholders);
             this.setState({ isLoading: false, isError: false });
         }
-    }
+    };
 
     removeSelectedFilter = (e, node) => {
         e.preventDefault();
         const newChecked = removeStagedTasFilter(this.props.nodes, this.props.checked, node.value);
         this.onUncheck(newChecked, { ...node, checked: false });
-    }
+    };
 
     autoCheckSearchResultDescendants = (checked, expanded, nodes) => {
         const newChecked = expanded
@@ -276,7 +276,7 @@ export class TASCheckboxTree extends React.Component {
             }, []);
 
         return new Set([...checked, ...newChecked]);
-    }
+    };
 
     fetchTas = (id = '', searchStr = '', resolveLoadingIndicator = true) => {
         if (this.request) this.request.cancel();
@@ -350,7 +350,7 @@ export class TASCheckboxTree extends React.Component {
                 }
                 this.request = null;
             });
-    }
+    };
 
     handleTextInputChange = (e) => {
         e.persist();
@@ -369,7 +369,7 @@ export class TASCheckboxTree extends React.Component {
         return this.setState({
             searchString: text
         });
-    }
+    };
 
     render() {
         const {

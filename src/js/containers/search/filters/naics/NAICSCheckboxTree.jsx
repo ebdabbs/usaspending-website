@@ -157,7 +157,7 @@ export class NAICSCheckboxTree extends React.Component {
                     return allUniqueAncestors
                         .reduce((prevPromise, ancestor) => prevPromise
                             .then(() => this.fetchNAICS(ancestor, false)), Promise.resolve())
-                        // Then populate the checked array w/ the real checked-nodes descendants
+                    // Then populate the checked array w/ the real checked-nodes descendants
                         .then(() => {
                             this.setState({ isLoading: false });
                             const newChecked = checkedFromHash
