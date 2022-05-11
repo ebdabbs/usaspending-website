@@ -220,7 +220,11 @@ export class PSCCheckboxTreeContainer extends React.Component {
 
     onClear = () => {
         if (this.request) this.request.cancel();
-        this.props.showPscTree();
+
+        // clear the searchExpanded array
+        this.props.setExpandedPsc([], 'SET_SEARCHED_EXPANDED');
+
+        // this.props.showPscTree();
         this.setState({
             isSearch: false,
             searchString: '',
@@ -228,7 +232,7 @@ export class PSCCheckboxTreeContainer extends React.Component {
             isError: false,
             errorMessage: '',
             showNoResults: false
-        });
+        }, this.fetchPsc);
     };
 
     onCollapse = (newExpandedArray) => {
