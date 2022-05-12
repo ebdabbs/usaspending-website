@@ -391,7 +391,7 @@ export const areChildrenPartial = (count, children) => {
     return sumOfAllChildren < count;
 };
 
-export const addChildrenAndPossiblyPlaceholder = (children, parent, hide = true) => {
+export const addChildrenAndPossiblyPlaceholder = (children, parent, hide) => {
     if (!children || !parent) return [];
     const hasGenuineGrandChildren = children.some((node) => doesNodeHaveGenuineChildren(node));
     const hasPlaceholderGrandChildren = children.some((child) => child?.children?.every((gc) => gc.isPlaceHolder));
