@@ -364,17 +364,11 @@ export class PSCCheckboxTreeContainer extends React.Component {
         if (!text) {
             return this.onClear();
         }
-        const shouldTriggerSearch = doesMeetMinimumCharsRequiredForSearch(text);
-        if (shouldTriggerSearch) {
-            return this.setState({
-                searchString: text,
-                isSearch: true,
-                isLoading: true
-            }, this.onSearchChange);
-        }
         return this.setState({
-            searchString: text
-        });
+            searchString: text,
+            isSearch: true,
+            isLoading: true
+        }, this.onSearchChange);
     };
 
     render() {
